@@ -40,6 +40,11 @@ Class Employee {
         }
     }
 
+    public static function getAllSalaries(array $employees){
+        foreach ($employees as $employee){
+            echo Employee::getSalary($employee);
+        }
+    }
 }
 
 
@@ -51,6 +56,4 @@ $employees = [
 
 ];
 
-foreach ($employees as $employee){
-    echo Employee::getSalary($employee);
-}
+Employee::getAllSalaries($employees);
