@@ -5,7 +5,7 @@
 
 system('clear');
 
-$wordArr = str_split(readline("Enter your word: \n"));
+$wordArr = str_split(strtolower((readline("Enter your word: \n"))));
 
 system('clear');
 

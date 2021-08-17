@@ -15,22 +15,26 @@ $PhoneKeyPad = [
 ];
 
 
-$string = 'hello';
+$stringArr = str_split (strtolower(readline('Enter your word: ')));
 
-$stringArr = str_split($string);
 
 $i = 0;
 
+
+
 foreach ($stringArr as $key1 => $letter){
+
     if($i!==0){
         echo'-';
     }
+
     $i++;
     foreach ($PhoneKeyPad as $key2 => $item){
 
         if(in_array($letter ,$PhoneKeyPad[$key2])){
-            $times = 1+array_search( $letter, $PhoneKeyPad["$key2"]);
+            $times = 1 + array_search( $letter, $PhoneKeyPad["$key2"]);
             echo str_repeat($key2, $times);
+
         }
 
     }
