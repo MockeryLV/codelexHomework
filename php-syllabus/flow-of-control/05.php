@@ -19,10 +19,13 @@ $string = 'hello';
 
 $stringArr = str_split($string);
 
-
+$i = 0;
 
 foreach ($stringArr as $key1 => $letter){
-
+    if($i!==0){
+        echo'-';
+    }
+    $i++;
     foreach ($PhoneKeyPad as $key2 => $item){
 
         if(in_array($letter ,$PhoneKeyPad[$key2])){
@@ -31,5 +34,6 @@ foreach ($stringArr as $key1 => $letter){
         }
 
     }
-    echo'-';
+
 }
+echo PHP_EOL;
