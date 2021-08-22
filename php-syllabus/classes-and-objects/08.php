@@ -26,12 +26,7 @@ class SavingAccount{
     }
 
 }
-//
-//function moneyFormat($money){
-//    $money = str_split((string) $money);
-//    array_unshift($money, '$');
-//    return join('',$money);
-//}
+
 
 $balance = (int) readline('How much money is in the account?: ');
 $annualInterestRate = (int) readline('Enter the annual interest rate: ');
@@ -41,9 +36,7 @@ $savingsAccount = new SavingAccount($balance, $annualInterestRate);
 
 $totalDeposits = 0;
 $totalWithdraws = 0;
-
 $interestEarned = 0;
-
 
 
 for($i = 1; $i <= $months; $i++){
@@ -63,9 +56,6 @@ for($i = 1; $i <= $months; $i++){
 
 
 }
-
-
-
 
 $totalDeposits = number_format($totalDeposits, 2, ".", ",") . "$";
 $totalWithdraws = number_format($totalWithdraws, 2, ".", ",") . "$";
