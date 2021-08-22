@@ -66,11 +66,18 @@ for($i = 1; $i <= $months; $i++){
 
 
 
-echo "Total deposited: $deposits" . PHP_EOL;
-echo "Total withdrawn: $withdraws" . PHP_EOL;
 
-echo "Interest earned: " . round($interestEarned, 2) . PHP_EOL;
-echo "Ending balance: " . round($savingsAccount->balance,2 ) . PHP_EOL;
+$totalDeposits = number_format($totalDeposits, 2, ".", ",") . "$";
+$totalWithdraws = number_format($totalWithdraws, 2, ".", ",") . "$";
+
+$interestEarned = number_format($interestEarned, 2 ,'.', ',') . "$";
+$savingsAccount->balance = number_format($savingsAccount->balance, 2 ,'.', ',') . "$";
+
+echo "Total deposited: $totalDeposits" . PHP_EOL;
+echo "Total withdrawn: $totalWithdraws" . PHP_EOL;
+
+echo "Interest earned: " . $interestEarned . PHP_EOL;
+echo "Ending balance: " . $savingsAccount->balance . PHP_EOL;
 
 
 
