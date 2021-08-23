@@ -1,12 +1,10 @@
 <?php
 
-
-
-
 $grid = [['_', '_', '_'],['_', '_', '_'],['_', '_', '_']];
 
 $turn = 1;
 
+$validInput = [0,1,2];
 
 function getGrid($grid){
     system('clear');
@@ -42,7 +40,6 @@ function checkState($grid, $turn){
         exit;
     }
 
-
     foreach ($grid as $key => $field) {
         //Win by horizontal line
         if ($field[0] !== '_' && $field[0] === $field[1] && $field[1] === $field[2]) {
@@ -68,7 +65,6 @@ function checkState($grid, $turn){
     }
 }
 
-
 function isTie($grid){
     foreach ($grid as $item){
         if(in_array('_',$item)){
@@ -80,31 +76,28 @@ function isTie($grid){
 
 while(true){
 
-
     while(true){
         getGrid($grid);
         $xy = readline(getTurn($turn) . ', choose your location (row, column):');
-        if(
-            (strlen($xy) === 2 || (strlen($xy) === 3 && $xy[1] === ' ')) &&
-            $xy[0] >= 0 &&
-            $xy[0] <=2 &&
-            $xy[1] >= 0 &&
-            $xy[1] <=2
-        ){
-            break;
+
+        if(strlen($xy) === 3){
+            [$y,$x] = explode(' ', $xy);
+
+        }else{
+            [$y, $x] = str_split($xy);
         }
 
-        readline('Incorrect input. Press Enter to try again!');
+        if(!(is_numeric($x) && is_numeric($y)) &&
+            $x >= 0 &&
+            $x <=2 &&
+            $y >= 0 &&
+            $y <=2
+        ){
+            readline('Incorrect input. Press Enter to try again!');
+            continue;
+        }
+        break;
     }
-
-    if(strlen($xy) === 3){
-        $x = explode(' ', $xy)[1];
-        $y = explode(' ', $xy)[0];
-    }else{
-        $x = str_split($xy)[1];
-        $y = str_split( $xy)[0];
-    }
-
 
     if($grid[$y][$x] === '_'){
         $grid[$y][$x] = getTurn($turn);
@@ -120,5 +113,4 @@ while(true){
     }else{
         readline('The place is already taken. Press Enter to change coorditates!');
     }
-
 }
