@@ -50,6 +50,7 @@ function checkState(string $hiddenword, array $wordArr, array $misses): void{
         exit;
     }
 
+
     if(count($misses) > 4){
         echo PHP_EOL . 'Game Over!' . PHP_EOL;
         echo "-=-=-=-=-=-=-=-=-=-=-=-=-=-" . PHP_EOL;
@@ -64,6 +65,12 @@ while(true){
     while(true){
         system('clear');
         $guess = printGrid($hiddenword, $misses, $wordArr);
+
+        if($guess === join('', $wordArr)){
+            echo PHP_EOL . 'YOU GOT IT!' . PHP_EOL;
+            echo "-=-=-=-=-=-=-=-=-=-=-=-=-=-" . PHP_EOL;
+            exit;
+        }
 
         if(strlen($guess) === 1){
             break;
