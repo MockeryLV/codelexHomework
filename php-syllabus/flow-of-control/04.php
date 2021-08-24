@@ -1,7 +1,7 @@
 <?php
 
 
-$dayNumber = 5;
+$dayNumber = (int) readline('Input the number(any letter will count as 0): ');
 
 switch ($dayNumber){
     case 0:
