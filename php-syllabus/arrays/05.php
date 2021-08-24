@@ -76,28 +76,30 @@ function isTie($grid){
 
 while(true){
 
-    while(true){
-        getGrid($grid);
-        $xy = readline(getTurn($turn) . ', choose your location (row, column):');
-
-        if(strlen($xy) === 3){
-            [$y,$x] = explode(' ', $xy);
-
-        }else{
-            [$y, $x] = str_split($xy);
+        while(true){
+            getGrid($grid);
+            $xy = readline(getTurn($turn) . ', choose your location (row, column): ');
+            if(strlen($xy) > 3 ||strlen($xy) < 2 ){
+                readline('Incorrect input. Press Enter to try again!');
+                continue;
+            }
+            else if(strlen($xy) === 3){
+                $mid = $xy[1];
+                [$y,$x] = explode($mid, $xy);
+            }else{
+                [$y, $x] = str_split($xy);
+            }
+            if(!(is_numeric($x) && is_numeric($y)) &&
+                $x >= 0 &&
+                $x <=2 &&
+                $y >= 0 &&
+                $y <=2
+            ){
+                readline('Incorrect input. Press Enter to try again!');
+                continue;
+            }
+            break;
         }
-
-        if(!(is_numeric($x) && is_numeric($y)) &&
-            $x >= 0 &&
-            $x <=2 &&
-            $y >= 0 &&
-            $y <=2
-        ){
-            readline('Incorrect input. Press Enter to try again!');
-            continue;
-        }
-        break;
-    }
 
     if($grid[$y][$x] === '_'){
         $grid[$y][$x] = getTurn($turn);
@@ -111,6 +113,6 @@ while(true){
 
         $turn++;
     }else{
-        readline('The place is already taken. Press Enter to change coorditates!');
+        readline('The place is already taken. Press Enter to change coordinates!');
     }
 }
