@@ -23,7 +23,6 @@ $winner = [
 
 ];
 
-
 while(true){
     $bestOf = (int) readline('Enter best of what you wanna play (number of rounds to win to win the game): ');
     if($bestOf % 2 !== 0){
@@ -44,7 +43,6 @@ while(true){
         echo 'Invalid input. You must type r, p, s, l or spk!' . PHP_EOL;
     }
 
-
     if($options[$computerChoice] === $playerChoice){
         echo "Computer choose $options[$computerChoice]" . ' Tie!' . PHP_EOL;
     }
@@ -55,7 +53,6 @@ while(true){
         echo "Computer choose $options[$computerChoice]" . ' You lose!' . PHP_EOL;
         $losses++;
     }
-
 
     if ($wins > $bestOf / 2){
         echo "You won the game!" . PHP_EOL;
