@@ -21,7 +21,7 @@ while(true){
 
 system('clear');
 
-for($i = 1; $i <= $bestOf; $i++){
+while(true){
     while(true){
         $computerChoice = (int) rand(1,3);
         $playerChoice = strtolower((string) readline('Enter r (rock), p (paper) or s (scissors)'));
