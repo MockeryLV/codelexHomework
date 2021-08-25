@@ -1,11 +1,27 @@
 <?php
 
-
 echo 'Rock Paper Scissors!' . PHP_EOL . PHP_EOL;
-
 
 $wins = 0;
 $losses = 0;
+
+$options = [
+    1 => 'rock',
+    2 => 'paper',
+    3 => 'scissors',
+    4 => 'lizard',
+    5 => 'spock'
+];
+
+$winner = [
+
+    'r' => [3,4],
+    'p' => [1,5],
+    's' => [2,4],
+    'l' => [2,5],
+    'spk' => [2,3]
+
+];
 
 
 while(true){
@@ -16,59 +32,30 @@ while(true){
     readline('You must type odd number! Press ENTER!');
 }
 
-
-
-
 system('clear');
 
 while(true){
     while(true){
-        $computerChoice = (int) rand(1,3);
-        $playerChoice = strtolower((string) readline('Enter r (rock), p (paper) or s (scissors)'));
-        if($playerChoice === 'r' || $playerChoice === 's' || $playerChoice === 'p'){
+        $computerChoice = (int) rand(1,5);
+        $playerChoice = strtolower((string) readline('Enter r (rock), p (paper), s (scissors), l (lizard) or spk (spock)'));
+        if($winner[$playerChoice]){
             break;
         }
-        echo 'Invalid input. You must type r, p or s!' . PHP_EOL;
+        echo 'Invalid input. You must type r, p, s, l or spk!' . PHP_EOL;
     }
 
-    switch (true){
-        case $playerChoice === 'r' && $computerChoice === 1:
-            echo 'Tie! Computer choose rock!' . PHP_EOL;
-            break;
-        case $playerChoice === 'r' && $computerChoice === 2:
-            echo 'Lose! Computer choose paper!'. PHP_EOL;
-            $losses++;
-            break;
-        case $playerChoice === 'r' && $computerChoice === 3:
-            echo 'Win! Computer choose scissors!'. PHP_EOL;
-            $wins++;
-            break;
-        case $playerChoice === 'p' && $computerChoice === 1:
-            echo 'Win! Computer choose rock!'. PHP_EOL;
-            $wins++;
-            break;
-        case $playerChoice === 'p' && $computerChoice === 2:
-            echo 'Tie! Computer choose paper!'. PHP_EOL;
-            break;
-        case $playerChoice === 'p' && $computerChoice === 3:
-            echo 'Lose! Computer choose scissors!'. PHP_EOL;
-            $losses++;
-            break;
-        case $playerChoice === 's' && $computerChoice === 1:
-            echo 'Lose! Computer choose rock!'. PHP_EOL;
-            $losses++;
-            break;
-        case $playerChoice === 's' && $computerChoice === 2:
-            echo 'Win! Computer choose paper!'. PHP_EOL;
-            $wins++;
-            break;
-        case $playerChoice === 's' && $computerChoice === 3:
-            echo 'Tie! Computer choose scissors!'. PHP_EOL;
-            break;
-        default:
-            echo 'ERROR' . PHP_EOL;
-            break;
+
+    if($options[$computerChoice] === $playerChoice){
+        echo "Computer choose $options[$computerChoice]" . ' Tie!' . PHP_EOL;
     }
+    if(in_array($computerChoice, $winner[$playerChoice])){
+        echo "Computer choose $options[$computerChoice]" . ' You win!' . PHP_EOL;
+        $wins++;
+    }else{
+        echo "Computer choose $options[$computerChoice]" . ' You lose!' . PHP_EOL;
+        $losses++;
+    }
+
 
     if ($wins > $bestOf / 2){
         echo "You won the game!" . PHP_EOL;
