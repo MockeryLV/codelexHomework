@@ -34,7 +34,7 @@ function spinning($grid, $symbols, $balance){
 
     foreach ($grid as $key => $item){
         foreach ($item as $k => $i){
-            for($t = 0; $t < 1; $t++){
+            for($t = 0; $t < 5; $t++){
                 $grid[$key][$k] = $symbols[rand(0, count($symbols) - 1)];
                 printGrid($grid, $balance);
             }
@@ -45,7 +45,9 @@ function spinning($grid, $symbols, $balance){
 
 
 
-$symbols = ['A', 'B', 'B' ,'C', 'C', 'C', 'D' ,'D', 'D', 'D', 'D' ,'D',];
+$symbols = ['A', 'B', 'B' ,'C', 'C', 'C', 'D' ,'D', 'E', 'E', 'E', 'D', 'D','D', 'E'];
+
+// 'E' got nothing
 
 $listOfBids = [10,20,40,80];
 
@@ -100,7 +102,11 @@ while(true){
                     $mplier=1.5;
 //                    readline('test');
                     break;
+                case 'D':
+                    $mplier=1;
+                    break;
                 default:
+                    $mplier = 0;
                     break;
             }
         }
@@ -120,7 +126,11 @@ while(true){
                        $mplier=1.5;
 //                       readline('test');
                        break;
+                   case 'D':
+                       $mplier=1;
+                       break;
                    default:
+                       $mplier = 0;
                        break;
                }
            }
@@ -130,6 +140,11 @@ while(true){
     }
 
     foreach($listOfBids as $bids){
+        if($winsOnGrid === 6 && $grid[0][0] === 'A'){
+            readline('JackPOT!');
+            $winning+= ($bids / 10) * 5;
+            $winning = pow($winning, $winsOnGrid) * $mplier;
+        }
         if($listOfBids[$bid] === $bids && $winsOnGrid > 0){
             $winning+= ($bids / 10) * 5;
 //            readline("$winning and $winsOnGrid and $mplier");

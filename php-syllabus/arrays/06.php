@@ -14,7 +14,6 @@ $hiddenword = str_repeat('_', count($wordArr));
 $misses = [];
 
 
-
 function printGrid(string $hiddenword, array $misses, array $wordArr) : string {
     echo "-=-=-=-=-=-=-=-=-=-=-=-=-=-" . PHP_EOL;
 
@@ -58,9 +57,7 @@ function checkState(string $hiddenword, array $wordArr, array $misses): void{
     }
 }
 
-
 while(true){
-
 
     while(true){
         system('clear');
@@ -80,16 +77,11 @@ while(true){
     }
 
 
-
-
-
     $hiddenword = checkGuess($wordArr, $guess, $hiddenword);
 
 
     if(!in_array($guess, $wordArr)){
         array_push($misses, $guess);
     }
-
-
 
 }
