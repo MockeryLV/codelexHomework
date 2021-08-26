@@ -34,6 +34,7 @@ function spinning($grid, $symbols, $balance){
 
     foreach ($grid as $key => $item){
         foreach ($item as $k => $i){
+            // 't' regulates speed of spinning
             for($t = 0; $t < 5; $t++){
                 $grid[$key][$k] = $symbols[rand(0, count($symbols) - 1)];
                 printGrid($grid, $balance);
@@ -45,7 +46,7 @@ function spinning($grid, $symbols, $balance){
 
 
 
-$symbols = ['A', 'B', 'B' ,'C', 'C', 'C', 'D' ,'D', 'E', 'E', 'E', 'D', 'D','D', 'E'];
+$symbols = ['A', 'B', 'B' ,'C', 'C', 'C', 'D' ,'D', 'E', 'E', 'D', 'D','D', 'E'];
 
 // 'E' got nothing
 
