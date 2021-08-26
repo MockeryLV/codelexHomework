@@ -9,7 +9,6 @@ $grid = [
     ['-', '-', '-', '-']
 ];
 
-
 $bid = 0;
 
 $balance = 1000;
@@ -40,7 +39,6 @@ function spinning($grid, $symbols, $balance)
     }
     return $grid;
 }
-
 
 function checkPrice($winsOnGrid, $grid){
 
@@ -74,11 +72,6 @@ $symbols = ['A', 'B', 'B', 'C', 'C', 'C', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'E'
 // 'E' got nothing
 
 $listOfBids = [10, 20, 40, 80];
-
-
-
-
-
 
 echo 'Welcome to FENIX!' . PHP_EOL;
 echo 'Balance: ' . $balance . '$';
