@@ -90,15 +90,15 @@ while(true){
             switch($grid[$key][0]){
                 case 'A':
                     $mplier=5;
-//                    readline('SUKA');
+//                    readline('test');
                     break;
                 case 'B':
                     $mplier=2;
-//                    readline('SUKA');
+//                    readline('test');
                     break;
                 case 'C':
                     $mplier=1.5;
-//                    readline('SUKA');
+//                    readline('test');
                     break;
                 default:
                     break;
@@ -110,15 +110,15 @@ while(true){
                switch($grid[$key][$k]){
                    case 'A':
                        $mplier=5;
-//                       readline('SUKA');
+//                       readline('test');
                        break;
                    case 'B':
                        $mplier=2;
-//                       readline('SUKA');
+//                       readline('test');
                        break;
                    case 'C':
                        $mplier=1.5;
-//                       readline('SUKA');
+//                       readline('test');
                        break;
                    default:
                        break;
