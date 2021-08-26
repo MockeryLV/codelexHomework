@@ -13,7 +13,7 @@ $bid = 0;
 
 $balance = 1000;
 
-function printGrid($grid, $balance)
+function printGrid(array $grid, int $balance)
 {
     system('clear');
     foreach ($grid as $item) {
@@ -25,7 +25,7 @@ function printGrid($grid, $balance)
     echo PHP_EOL . "Balance: $balance$" . PHP_EOL . PHP_EOL;
 }
 
-function spinning($grid, $symbols, $balance)
+function spinning(array $grid, array $symbols, int $balance): array
 {
 
     foreach ($grid as $key => $item) {
@@ -40,7 +40,7 @@ function spinning($grid, $symbols, $balance)
     return $grid;
 }
 
-function checkPrice($winsOnGrid, $grid){
+function checkPrice(array $grid): float{
 
     switch ($grid) {
         case 'A':
@@ -110,7 +110,7 @@ while (true) {
     //win by horizontal
     foreach ($grid as $key => $item) {
         if (in_array($grid[$key][0], $symbols) && $grid[$key][0] === $grid[$key][1] && $grid[$key][1] === $grid[$key][2] && $grid[$key][2] === $grid[$key][3]) {
-           $mplier = checkPrice($winsOnGrid, $grid[$key][0]);
+           $mplier = checkPrice( $grid[$key][0]);
            $winsOnGrid++;
         }
 
@@ -119,28 +119,28 @@ while (true) {
     //win by diagonals  (needs to be refactored :)
     if($grid[1][2] !== '-'){
         if($grid[0][0] === $grid[0][1] && $grid[0][0] === $grid[1][2] && $grid[0][0] === $grid[2][3]){
-            $mplier = checkPrice($winsOnGrid, $grid[0][0]);
+            $mplier = checkPrice( $grid[0][0]);
             $winsOnGrid++;
         }
     }
 
     if($grid[1][2] !== '-'){
         if($grid[2][0] === $grid[2][1] && $grid[2][0] === $grid[1][2] && $grid[2][0] === $grid[0][3]){
-            $mplier = checkPrice($winsOnGrid, $grid[2][0]);
+            $mplier = checkPrice( $grid[2][0]);
             $winsOnGrid++;
         }
     }
 
     if($grid[1][1] !== '-'){
         if($grid[0][3] === $grid[0][2] && $grid[0][3] === $grid[1][1] && $grid[0][3] === $grid[2][0]){
-            $mplier = checkPrice($winsOnGrid, $grid[0][3]);
+            $mplier = checkPrice( $grid[0][3]);
             $winsOnGrid++;
         }
     }
 
     if($grid[1][1] !== '-'){
         if($grid[2][3] === $grid[2][2] && $grid[2][3] === $grid[1][1] && $grid[2][3] === $grid[0][0]){
-            $mplier = checkPrice($winsOnGrid, $grid[2][3]);
+            $mplier = checkPrice( $grid[2][3]);
             $winsOnGrid++;
         }
     }

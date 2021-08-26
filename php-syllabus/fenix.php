@@ -19,7 +19,7 @@ $bid = 0;
 
 $balance = 1000;
 
-function printGrid($grid, $balance){
+function printGrid(array $grid, int $balance){
     system('clear');
     foreach ($grid as $item){
         foreach ($item as $i){
@@ -30,7 +30,7 @@ function printGrid($grid, $balance){
     echo PHP_EOL. "Balance: $balance$" . PHP_EOL . PHP_EOL;
 }
 
-function spinning($grid, $symbols, $balance){
+function spinning(array $grid, array $symbols, int $balance): array {
 
     foreach ($grid as $key => $item){
         foreach ($item as $k => $i){
