@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 system('clear');
 
 $wordArr = str_split(strtolower((readline("Enter your word: \n"))));
@@ -75,7 +72,6 @@ while(true){
         echo 'You must type one letter or the whole word!' . "\n";
         readline('Press Enter to continue.');
     }
-
 
     $hiddenword = checkGuess($wordArr, $guess, $hiddenword);
 
