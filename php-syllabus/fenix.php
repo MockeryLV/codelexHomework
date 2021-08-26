@@ -71,7 +71,7 @@ while(true){
     echo PHP_EOL . "Type 'exit' to quit!" . PHP_EOL;
 
     echo PHP_EOL;
-    $bid = (string) readline('Choose the bid: ');
+    $bid = (string) readline('Choose the bid (Press ENTER for 10$): ');
     if ($bid === 'exit'){
         exit;
     }
