@@ -1,6 +1,5 @@
 <?php
 
-
 system('clear');
 
 $grid = [
@@ -40,8 +39,7 @@ function spinning(array $grid, array $symbols, int $balance): array
     return $grid;
 }
 
-function checkPrice(array $grid): float{
-
+function checkPrice($grid): float{
     switch ($grid) {
         case 'A':
             $mplier = 5;
@@ -163,10 +161,4 @@ while (true) {
     echo PHP_EOL . "Earned: +$winning$" . PHP_EOL;
 
     $balance += $winning;
-
 }
-
-
-
-
-
