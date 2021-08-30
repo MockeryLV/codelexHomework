@@ -139,6 +139,82 @@ class Narvesen{
 
 }
 
+
+class UserInterface{
+
+    public static function BuyingCart($narvesen, $costumer){
+        while(true){
+            $choose = (string) readline('Choose Product (exit to quit/buy to buy cart): ');
+            if($choose === 'exit'){
+                exit;
+            }
+            if($choose === 'buy'){
+                if(count($narvesen->cart) < 1){
+                    echo 'You dont have any items selected!' . PHP_EOL;
+                    continue;
+                }
+                system('clear');
+
+
+                $narvesen->printCart();
+                echo PHP_EOL;
+                echo 'Your balance in cash: ' . $costumer->cash . "$" . PHP_EOL;
+                echo 'Your balance on card: ' . $costumer->card . "$" . PHP_EOL;
+
+
+                echo PHP_EOL . 'You need to pay: ' . $narvesen->cartPrice() . "$" . PHP_EOL;
+                while(true){
+                    $payment = (string) readline('Enter payment method(cash/card/exit): ');
+
+                    if($payment === 'exit'){
+                        exit;
+                    }
+                    if($payment === 'cash' || $payment === 'card'){
+                        if($payment === 'cash'){
+                            if($costumer->cash >= $narvesen->cartPrice()){
+                                $costumer->withdrawCash($narvesen->cartPrice());
+                                echo 'Thanks! Have a nice day!'. PHP_EOL;
+                                exit;
+                            }
+                            else{
+                                echo 'You do not have enough money in cash!'. PHP_EOL;
+                                continue;
+                            }
+                        }else{
+                            if($costumer->card >= $narvesen->cartPrice()){
+                                $costumer->withdrawCard($narvesen->cartPrice());
+                                echo 'Thanks! Have a nice day!'. PHP_EOL;
+                                exit;
+                            }
+                            else{
+                                echo 'You do not have enough money on card!'. PHP_EOL;
+                                continue;
+                            }
+                        }
+                    }
+                    else{
+                        echo 'Invalid Input!' . PHP_EOL;
+                    }
+                }
+
+
+
+            }
+            $choose = (int) $choose;
+            if(array_key_exists($choose, $narvesen->items)){
+                break;
+            }
+            echo 'Incorrect Input!' . PHP_EOL;
+        }
+        return $choose;
+    }
+
+
+}
+
+
+//setting the info
+
 $products = [
 
     new Product('Phone', 100),
@@ -147,22 +223,14 @@ $products = [
 
 ];
 
-
-
-
 $narvesen = new Narvesen();
 
 $narvesen->addProducts($products);
-
-//$narvesen->printProducts();
-
-
 
 
 
 
 system('clear');
-
 
 echo 'Welcome to Narvesen!' . PHP_EOL;
 
@@ -173,76 +241,12 @@ $costumer = new Costumer($cash, $card);
 
 while(true){
 
-
     echo "Cart(" . count($narvesen->cart) . ") - " . $narvesen->cartPrice() . "$" . PHP_EOL;
     echo 'Product List:' . PHP_EOL . PHP_EOL;
 
     $narvesen->printProducts();
 
-    while(true){
-
-        $choose = (string) readline('Choose Product (exit to quit/buy to buy cart): ');
-        if($choose === 'exit'){
-            exit;
-        }
-        if($choose === 'buy'){
-            if(count($narvesen->cart) < 1){
-                echo 'You dont have any items selected!' . PHP_EOL;
-                continue;
-            }
-            system('clear');
-
-
-            $narvesen->printCart();
-            echo PHP_EOL;
-            echo 'Your balance in cash: ' . $costumer->cash . "$" . PHP_EOL;
-            echo 'Your balance on card: ' . $costumer->card . "$" . PHP_EOL;
-
-
-            echo PHP_EOL . 'You need to pay: ' . $narvesen->cartPrice() . "$" . PHP_EOL;
-            while(true){
-                $payment = (string) readline('Enter payment method(cash/card/exit): ');
-
-                if($payment === 'exit'){
-                    exit;
-                }
-                if($payment === 'cash' || $payment === 'card'){
-                    if($payment === 'cash'){
-                        if($costumer->cash >= $narvesen->cartPrice()){
-                            $costumer->withdrawCash($narvesen->cartPrice());
-                            echo 'Thanks! Have a nice day!'. PHP_EOL;
-                            exit;
-                        }
-                        else{
-                            echo 'You do not have enough money in cash!'. PHP_EOL;
-                            continue;
-                        }
-                    }else{
-                        if($costumer->card >= $narvesen->cartPrice()){
-                            $costumer->withdrawCard($narvesen->cartPrice());
-                            echo 'Thanks! Have a nice day!'. PHP_EOL;
-                            exit;
-                        }
-                        else{
-                            echo 'You do not have enough money on card!'. PHP_EOL;
-                            continue;
-                        }
-                    }
-                }
-                else{
-                    echo 'Invalid Input!' . PHP_EOL;
-                }
-            }
-
-
-
-        }
-        $choose = (int) $choose;
-        if(array_key_exists($choose, $narvesen->items)){
-            break;
-        }
-        echo 'Incorrect Input!' . PHP_EOL;
-    }
+    $choose = UserInterface::BuyingCart($narvesen, $costumer);
 
     $quantity = (int) readline('Enter quantity of product: ');
 
