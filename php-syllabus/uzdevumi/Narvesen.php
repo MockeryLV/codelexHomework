@@ -14,6 +14,9 @@
 
 class Product{
 
+
+    public $quantity;
+
     public $name;
 
     public $price;
@@ -21,17 +24,13 @@ class Product{
     public $category;
 
 
-    public function __construct(string $name, int $price, string $category = 'N')
+    public function __construct(string $name, int $price, int $quantity ,string $category = 'N')
     {
         $this->name =  $name;
         $this->price = $price;
         $this->category =  $category;
+        $this->quantity = $quantity;
     }
-
-
-
-
-
 
 
 }
@@ -46,7 +45,7 @@ class Costumer{
 
     public $age;
 
-    public function __construct(int $cash, int $card, string $name = 'John', int $age = 18)
+    public function __construct(int $cash, int $card, int $age, string $name = 'John')
     {
         $this->card =  $card;
         $this->cash = $cash;
@@ -108,17 +107,28 @@ class Narvesen{
 
     public function printProducts(){
         foreach ($this->items as $key =>$item){
-            echo "$key: $item->name: $item->price$" . PHP_EOL;
+            echo "$key: $item->name: $item->price$ ". "(". $item->quantity .")" . PHP_EOL;
         }
     }
 
 
-    public function addToCart(Product $item, int $quantity = 1){
-        if(isset($this->cart[$item->name])){
-            $this->cart[$item->name][0]++;
+    public function addToCart(Product $item, Costumer $costumer , int $quantity = 1){
+
+        if($item->quantity - $quantity >= 0){
+            if($item->category === 'A' && !$costumer->isAdult()){
+                readline( 'Sorry, You are not an adult!' );
+            }else{
+                if(isset($this->cart[$item->name])){
+                    $this->cart[$item->name][0]++;
+                }else{
+                    $this->cart[$item->name] = [$quantity, $item->price];
+                }
+                $item->quantity-=$quantity;
+            }
         }else{
-            $this->cart[$item->name] = [$quantity, $item->price];
+            readline('Sorry, Not in stock!');
         }
+
 
     }
 
@@ -217,9 +227,10 @@ class UserInterface{
 
 $products = [
 
-    new Product('Phone', 100),
-    new Product('Toothpaste', 5),
-    new Product('Apple', 1),
+    new Product('Phone', 100, 100),
+    new Product('Toothpaste', 5, 5),
+    new Product('Apple', 1, 6),
+    new Product('Vodka', 20, 5,'A')
 
 ];
 
@@ -234,10 +245,12 @@ system('clear');
 
 echo 'Welcome to Narvesen!' . PHP_EOL;
 
+
+$age = (int) readline('Enter your age: ');
 $cash = (int) readline('Enter your cash: ');
 $card = (int) readline('Enter your card balance: ');
 
-$costumer = new Costumer($cash, $card);
+$costumer = new Costumer($cash, $card, $age);
 
 while(true){
 
@@ -251,7 +264,9 @@ while(true){
     $quantity = (int) readline('Enter quantity of product: ');
 
 
-    $narvesen->addToCart($narvesen->items[$choose], $quantity);
+    $narvesen->addToCart($narvesen->items[$choose], $costumer, $quantity);
+
+
     system('clear');
 
 }
