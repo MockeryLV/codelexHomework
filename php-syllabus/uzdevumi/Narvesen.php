@@ -61,13 +61,13 @@ class Costumer{
         return false;
     }
 
-    public function depositCash(int $amount){
-        $this->cash += $amount;
-    }
-
-    public function depositCard(int $amount){
-        $this->card += $amount;
-    }
+//    public function depositCash(int $amount){
+//        $this->cash += $amount;
+//    }
+//
+//    public function depositCard(int $amount){
+//        $this->card += $amount;
+//    }
 
     public function withdrawCash(int $amount){
         $this->cash -= $amount;
