@@ -101,12 +101,27 @@ class Game{
         }
     }
 
+    public static function changeEgg(Egg $player): Egg{
+        $input = (string) readline('Maybe you wanna take new egg? (y/n)');
+        if($input === 'y'){
+            return Game::CreateEgg();
+        }else if($input === 'n'){
+            if(!$player->isAlive()){
+                exit;
+            }
+            return $player;
+        }else{
+            if(!$player->isAlive()){
+                readline('I will take it as no...');
+                exit;
+            }
+            readline('I will take it as no...');
+            return $player;
+        }
+    }
 }
 
 
-
-
-$champion = new Egg('Downbreaker');
 
 $enemies = [
     new Egg('Sword'),
@@ -127,10 +142,12 @@ while(true){
 
     if($winner['name'] === $opponent->getEgg()['name']){
         echo 'You lose!' . PHP_EOL;
-        exit;
+        $player = Game::changeEgg($player);
     }else{
         readline( 'Congrats!!! You win!' );
+        $player = Game::changeEgg($player);
     }
+
 
 
 }
