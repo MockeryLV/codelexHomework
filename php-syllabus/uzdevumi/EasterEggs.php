@@ -13,7 +13,7 @@ class Egg {
     {
         $this->name = $name;
 
-        $this->chance = rand(1,50);
+        $this->chance = rand(1,100);
 
     }
 
@@ -41,10 +41,7 @@ class Egg {
 
 class Game{
 
-//
-//    private static function hittingAnimation(){
-//
-//    }
+
 
     public static function fight(Egg $fighter, Egg $enemie): Egg{
 
@@ -54,8 +51,8 @@ class Game{
             echo $fighter->getEgg()['name'] .' hp: ' . $fighter->getEgg()['hp'] . PHP_EOL;
             echo $enemie->getEgg()['name'] . ' hp: ' . $enemie->getEgg()['hp'] . PHP_EOL;
 
-            $fighterChance = rand($fighter->getEgg()['chance'], 55);
-            $enemieChance = rand($enemie->getEgg()['chance'], 55);
+            $fighterChance = rand($fighter->getEgg()['chance'], 100);
+            $enemieChance = rand($enemie->getEgg()['chance'], 100);
             readline('Press Enter to hit!');
 
             if($fighterChance > $enemieChance){
