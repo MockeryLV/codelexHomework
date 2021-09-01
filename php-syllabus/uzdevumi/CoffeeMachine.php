@@ -10,8 +10,6 @@ class Coin{
         $this->nominal = $nominal;
     }
 
-
-
 }
 
 
@@ -84,6 +82,8 @@ class Counter{
     }
 
     public function CountForCoffee(Coffee $coffee, Wallet $wallet){
+
+        $backUp = $wallet->coins;
         system('clear');
         while($this->balance < $coffee->price ){
             system('clear');
@@ -113,15 +113,15 @@ class Counter{
         }
 
         if($coin === 'back'){
+            $wallet->coins = $backUp;
             echo 'Thanks!' . PHP_EOL;
         }else{
             if($this->balance > $coffee->price){
                 $this->giveChange($coffee, $wallet);
             }
             readline( 'Thanks for buying ' . $coffee->name . "! Have a nice one!" . PHP_EOL);
-            $this->balance = 0;
         }
-
+        $this->balance = 0;
     }
 }
 
