@@ -23,7 +23,12 @@ class Wallet{
     {
 
         foreach ($coins as $coin){
-            $this->coins["$coin->nominal"] = 1;
+            if(!isset($this->coins["$coin->nominal"])){
+                $this->coins["$coin->nominal"] = 1;
+            }else{
+                $this->coins["$coin->nominal"]++;
+            }
+
         }
 
     }
@@ -187,9 +192,14 @@ class CoffeeMachine{
 
 $coins = [
     new Coin(5),
+    new Coin(5),
+    new Coin(5),
+    new Coin(5),
     new Coin(10),
     new Coin(20),
+    new Coin(20),
     new Coin(50),
+    new Coin(100),
     new Coin(100),
     new Coin(200)
 ];
