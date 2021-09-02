@@ -160,13 +160,12 @@ class UserInterface{
         echo 'Balance: ' . $player->balance . "$" . PHP_EOL;
         while(true){
             $champion = (string) readline('Choose your champion: ');
-
-            if($champion === ''){
+            if(!is_numeric($champion)){
                 echo 'Invalid input!' . PHP_EOL;
                 continue;
             }
             $champion = (int) $champion;
-            if($champion <= count($game->runners) + 1){
+            if($champion <= count($game->runners) - 1 && $champion >= 0){
                 break;
             }
             else{
@@ -183,9 +182,16 @@ class UserInterface{
             if($champion === 'done'){
                 break;
             }
-
+            if(!is_numeric($champion)){
+                continue;
+            }
             $champion = (int) $champion;
-
+            if($champion <= count($game->runners) - 1 && $champion >= 0){
+                break;
+            }else{
+                echo 'Invalid input!' . PHP_EOL;
+                continue;
+            }
             if(array_key_exists($game->runners[$champion]->symbol, $player->bets)){
                 readline('The champion has already taken!');
             }else{
@@ -246,7 +252,7 @@ $runners = [
     new Runner('3', 1),
 ];
 
-$game = new Game($runners, 10);
+$game = new Game($runners, 30);
 
 $player = new Player(1000);
 
