@@ -27,11 +27,15 @@ class Runner
         $this->location += rand(1, 2);
     }
 
+    public function resetRunner(){
+        $this->location = 0;
+        $this->timeFinished = 0;
+
+    }
 }
 
 class Game
 {
-
 
     public $lanes;
 
@@ -49,6 +53,18 @@ class Game
         $this->runners = $runners;
 
     }
+
+    public function GameReset(){
+        $this->time = 0;
+        $this->places = [];
+
+        foreach ($this->runners as $runner){
+            $runner->resetRunner();
+        }
+
+
+    }
+
 
     public function GameStart():bool
     {
@@ -78,14 +94,12 @@ class Game
         }
     }
 
-
     public function printLines()
     {
         foreach ($this->lanes as $lane) {
             echo $lane . PHP_EOL;
         }
     }
-
 
     public function runnersMove()
     {
@@ -100,7 +114,6 @@ class Game
             }
         }
     }
-
 
     public function isFinished(): bool
     {
@@ -134,8 +147,6 @@ class Game
         }
     }
 
-
-
 }
 
 
@@ -148,7 +159,6 @@ class Player{
     {
         $this->balance = $balance;
     }
-
 
     public function placeBet(int $amount, Runner $runner){
         if($this->balance >= $amount){
@@ -169,9 +179,7 @@ class Player{
         $this->bets = [];
     }
 
-
 }
-
 
 class UserInterface{
 
@@ -194,7 +202,6 @@ class UserInterface{
 
             $champion = (int) $champion;
 
-
             if(in_array($champion, $champions)){
                 readline('The champion has already taken!');
             }else{
@@ -211,7 +218,7 @@ class UserInterface{
         if(array_key_exists($game->places[0]->symbol,$player->bets)){
             $player->win($game->places[0]);
             echo 'You win!' . PHP_EOL;
-            echo "Balance $player->balance" . PHP_EOL;
+            echo "Balance $player->balance$" . PHP_EOL;
         }else{
             $player->lose();
             echo 'You lose!';
@@ -226,12 +233,11 @@ class UserInterface{
             if(!$status){
                 break;
             }
-            usleep(500000);
+            usleep(50000);
         }
     }
 
 }
-
 
 $runners = [
     new Runner('X', 3),
@@ -245,18 +251,16 @@ $runners = [
     new Runner('3', 1),
 ];
 
-
-
 $game = new Game($runners, 10);
 
 $player = new Player(1000);
 
 $userInterface = new UserInterface();
 
-
-$userInterface::BetMenu($game, $player);
-$userInterface::Race($game);
-$userInterface::winLoseMenu($game, $player);
-
-
-
+while(true){
+    $userInterface::BetMenu($game, $player);
+    $userInterface::Race($game);
+    $userInterface::winLoseMenu($game, $player);
+    $game->GameReset();
+    readline('Enter to continue');
+}
