@@ -11,8 +11,6 @@ class Coin{
     }
 
 }
-
-
 class Wallet{
 
     public $coins = [];
@@ -26,7 +24,6 @@ class Wallet{
             }else{
                 $this->coins["$coin->nominal"]++;
             }
-
         }
 
     }
@@ -138,9 +135,6 @@ class Coffee{
     }
 }
 
-
-
-
 class CoffeeMachine{
 
     public $wallet;
@@ -151,7 +145,6 @@ class CoffeeMachine{
 
     public $coffees;
 
-
     public function __construct($wallet, $coins, $counter, $coffees)
     {
         $this->wallet = $wallet;
@@ -160,13 +153,11 @@ class CoffeeMachine{
         $this->coffees = $coffees;
     }
 
-
     public function listDrinks(){
         foreach ($this->coffees as $key => $coffee){
             echo "$key: $coffee->name - " . $coffee->price / 100 . '$' . PHP_EOL;
         }
     }
-
 
     public function chooseDrink(): Coffee{
         echo 'Available drinks: ' . PHP_EOL;
@@ -187,8 +178,6 @@ class CoffeeMachine{
     }
 
 }
-
-
 
 $coins = [
     new Coin(5),
