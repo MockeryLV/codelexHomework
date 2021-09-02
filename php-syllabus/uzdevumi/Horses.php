@@ -51,56 +51,40 @@ class Game
     {
         $this->laneLength = $laneLength;
         $this->runners = $runners;
-
     }
-
-    public function GameReset(){
+    public function GameReset(Player $player){
         $this->time = 0;
         $this->places = [];
-
+        $player->bets = [];
         foreach ($this->runners as $runner){
             $runner->resetRunner();
         }
-
-
     }
-
-
     public function GameStart():bool
     {
-
         if ($this->isFinished()) {
             $this->listPlaces();
             return false;
         }
-
         $this->setLines();
         $this->printLines();
-
         $this->runnersMove();
-
         $this->time++;
         return true;
     }
-
     public function setLines()
     {
-
         foreach ($this->runners as $key => $runner) {
-
             $this->lanes[$key] = str_repeat('_', $this->laneLength - ($this->laneLength - $runner->location))
                 . $runner->symbol . str_repeat('_', $this->laneLength - $runner->location);
-
         }
     }
-
     public function printLines()
     {
         foreach ($this->lanes as $lane) {
             echo $lane . PHP_EOL;
         }
     }
-
     public function runnersMove()
     {
         foreach ($this->runners as $runner) {
@@ -114,7 +98,6 @@ class Game
             }
         }
     }
-
     public function isFinished(): bool
     {
         foreach ($this->runners as $key => $runner) {
@@ -123,9 +106,7 @@ class Game
             }
         }
         return true;
-
     }
-
     public function listPlaces()
     {
         $n = 1;
@@ -136,17 +117,13 @@ class Game
             } else {
                 echo $n . " place: " . $place->symbol . " ($place->timeFinished sec.)" . PHP_EOL;
             }
-
-//
         }
     }
-
     public function listRunners(){
         foreach ($this->runners as $key => $runner){
             echo "$key: $runner->symbol (koef x$runner->coef)" . PHP_EOL;
         }
     }
-
 }
 
 
@@ -159,7 +136,6 @@ class Player{
     {
         $this->balance = $balance;
     }
-
     public function placeBet(int $amount, Runner $runner){
         if($this->balance >= $amount){
             $this->balance-=$amount;
@@ -169,16 +145,11 @@ class Player{
         }
 
     }
-
     public function win(Runner $runner){
         $this->balance += $this->bets["$runner->symbol"] * $runner->coef;
-        $this->bets = [];
     }
-
     public function lose(){
-        $this->bets = [];
     }
-
 }
 
 class UserInterface{
@@ -228,14 +199,25 @@ class UserInterface{
 
     public static function winLoseMenu(Game $game, Player $player){
 
-        if(array_key_exists($game->places[0]->symbol,$player->bets)){
-            $player->win($game->places[0]);
-            echo 'You win!' . PHP_EOL;
-            echo "Balance $player->balance$" . PHP_EOL;
-        }else{
-            $player->lose();
-            echo 'You lose!' . PHP_EOL;
+        $winningPlaces = [];
+        foreach($game->places as $place){
+            if($place->timeFinished === $game->places[0]->timeFinished){
+                array_push($winningPlaces, $place->symbol);
+            }
         }
+
+        foreach($player->bets as $key => $bet){
+            if(in_array($key, $winningPlaces)){
+                $player->win($game->places[0]);
+                echo 'You win with ' . $key .  '!' . PHP_EOL;
+                echo "Balance $player->balance$" . PHP_EOL;
+            }else{
+                $player->lose();
+                echo 'You lose with ' . $key . '!' . PHP_EOL;
+            }
+        }
+
+
 
     }
 
@@ -252,10 +234,6 @@ class UserInterface{
 
 }
 
-
-
-
-
 $runners = [
     new Runner('X', 3),
     new Runner('#', 2),
@@ -268,7 +246,7 @@ $runners = [
     new Runner('3', 1),
 ];
 
-$game = new Game($runners, 20);
+$game = new Game($runners, 10);
 
 $player = new Player(1000);
 
@@ -278,6 +256,6 @@ while(true){
     $userInterface::BetMenu($game, $player);
     $userInterface::Race($game);
     $userInterface::winLoseMenu($game, $player);
-    $game->GameReset();
+    $game->GameReset($player);
     readline('Enter to continue');
 }
