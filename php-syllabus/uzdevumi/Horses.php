@@ -186,10 +186,23 @@ class UserInterface{
     public static function BetMenu (Game $game, Player $player){
         system('clear');
         $game->listRunners();
-        $champions = [];
         echo 'Balance: ' . $player->balance . "$" . PHP_EOL;
-        $champion = (int) readline('Choose your champion: ');
-        array_push($champions, $champion);
+        while(true){
+            $champion = (string) readline('Choose your champion: ');
+
+            if($champion === ''){
+                echo 'Invalid input!' . PHP_EOL;
+                continue;
+            }
+            $champion = (int) $champion;
+            if($champion <= count($game->runners) + 1){
+                break;
+            }
+            else{
+                echo 'Invalid input!' . PHP_EOL;
+            }
+        }
+
         $amount = (int) readline('Your bet: ');
         $player->placeBet($amount, $game->runners[$champion]);
 
@@ -202,7 +215,7 @@ class UserInterface{
 
             $champion = (int) $champion;
 
-            if(in_array($champion, $champions)){
+            if(array_key_exists($game->runners[$champion]->symbol, $player->bets)){
                 readline('The champion has already taken!');
             }else{
                 $amount = (int) readline('Your bet: ');
@@ -221,7 +234,7 @@ class UserInterface{
             echo "Balance $player->balance$" . PHP_EOL;
         }else{
             $player->lose();
-            echo 'You lose!';
+            echo 'You lose!' . PHP_EOL;
         }
 
     }
@@ -239,6 +252,10 @@ class UserInterface{
 
 }
 
+
+
+
+
 $runners = [
     new Runner('X', 3),
     new Runner('#', 2),
@@ -251,7 +268,7 @@ $runners = [
     new Runner('3', 1),
 ];
 
-$game = new Game($runners, 10);
+$game = new Game($runners, 20);
 
 $player = new Player(1000);
 
