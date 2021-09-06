@@ -3,11 +3,11 @@
 
 class Point{
 
-    public $x;
+    private int $x;
 
-    public $y;
+    private int $y;
 
-    public function __construct($x, $y)
+    public function __construct(int $x, int $y)
     {
         $this->x = $x;
 
@@ -30,6 +30,15 @@ class Point{
 
     }
 
+    public function getX(): int{
+        return $this->x;
+    }
+
+    public function getY(): int{
+        return $this->y;
+    }
+
+
 }
 
 
@@ -40,5 +49,5 @@ $p2 = new Point(-3, 6);
 Point::swap_points($p1, $p2);
 
 
-echo "(" . $p1->x . ", " . $p1->y . ")" . PHP_EOL;
-echo "(" . $p2->x . ", " . $p2->y . ")" . PHP_EOL;
+echo "(" . $p1->getX() . ", " . $p1->getY() . ")" . PHP_EOL;
+echo "(" . $p2->getX() . ", " . $p2->getY() . ")" . PHP_EOL;

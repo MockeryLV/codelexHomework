@@ -3,9 +3,9 @@
 
 class FuelGauge {
 
-    public $fuelLevel;
+    public int $fuelLevel;
 
-    public function __construct($fuelLevel = 0)
+    public function __construct(int $fuelLevel = 0)
     {
         $this->fuelLevel = $fuelLevel;
     }
@@ -33,11 +33,11 @@ class FuelGauge {
 
 class Odometer {
 
-    public $mileage;
+    public int $mileage;
 
-    private $startMileage;
+    private int $startMileage;
 
-    public function __construct($mileage = 0)
+    public function __construct(int $mileage = 0)
     {
         $this->mileage = $mileage;
         $this->startMileage = $mileage;
