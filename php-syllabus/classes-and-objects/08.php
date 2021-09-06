@@ -65,9 +65,7 @@ for($i = 1; $i <= $months; $i++){
 
 $totalDeposits = number_format($totalDeposits, 2, ".", ",") . "$";
 $totalWithdraws = number_format($totalWithdraws, 2, ".", ",") . "$";
-
 $interestEarned = number_format($interestEarned, 2 ,'.', ',') . "$";
-
 $savingsMoney =  number_format($savingsAccount->balance(), 2 ,'.', ',') . "$";
 
 echo "Total deposited: $totalDeposits" . PHP_EOL;

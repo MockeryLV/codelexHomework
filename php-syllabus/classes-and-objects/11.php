@@ -70,16 +70,16 @@ class Account{
 //echo "{$Mine->getName()}: {$Mine->balance()}$" . PHP_EOL;
 
 
-//$A =  new Account('A', 100.0);
-//$B =  new Account('B', 0.0);
-//$C =  new Account('C', 0.0);
-//
-//Account::transfer($A, $B, 50);
-//Account::transfer($B, $C, 25);
-//
-//echo "{$A->getName()}: {$A->balance()}$" . PHP_EOL;
-//echo "{$B->getName()}: {$B->balance()}$" . PHP_EOL;
-//echo "{$C->getName()}: {$C->balance()}$" . PHP_EOL;
+$A =  new Account('A', 100.0);
+$B =  new Account('B', 0.0);
+$C =  new Account('C', 0.0);
+
+Account::transfer($A, $B, 50);
+Account::transfer($B, $C, 25);
+
+echo "{$A->getName()}: {$A->balance()}$" . PHP_EOL;
+echo "{$B->getName()}: {$B->balance()}$" . PHP_EOL;
+echo "{$C->getName()}: {$C->balance()}$" . PHP_EOL;
 
 
 
