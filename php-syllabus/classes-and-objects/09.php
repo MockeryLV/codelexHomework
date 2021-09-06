@@ -3,9 +3,9 @@
 
 class BankAccount{
 
-    public string $name;
+    private string $name;
 
-    public int $balance;
+    private int $balance;
 
     public function __construct(string $name, int $balance)
     {

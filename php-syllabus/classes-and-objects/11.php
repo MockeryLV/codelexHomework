@@ -3,9 +3,9 @@
 
 class Account{
 
-    public $name;
+    private $name;
 
-    public $balance;
+    private $balance;
 
     public function __construct(string $name, float $balance)
     {
@@ -29,6 +29,10 @@ class Account{
         $from->withdrawal($howMuch);
         $to->deposit($howMuch);
     }
+
+    public function getName(){
+        return $this->name;
+    }
 }
 
 
@@ -36,8 +40,8 @@ class Account{
 //$bartos_swiss_account = new Account("Barto's account in Switzerland", 1000000.00);
 //
 //echo "Initial state" . PHP_EOL;
-//echo "$bartos_account->name, $bartos_account->balance$" . PHP_EOL;
-//echo "$bartos_swiss_account->name, $bartos_account->balance$" . PHP_EOL;
+//echo "{$bartos_account->getName()}, {$bartos_account->balance()}$" . PHP_EOL;
+//echo "{$bartos_swiss_account->getName()}, {$bartos_account->balance()}$" . PHP_EOL;
 //
 //$bartos_account->withdrawal(20);
 //echo "Barto's account balance is now: " . "{$bartos_account->balance()}$" . PHP_EOL;
@@ -45,14 +49,14 @@ class Account{
 //echo "Barto's Swiss account balance is now: "."{$bartos_swiss_account->balance()}$" . PHP_EOL;
 //
 //echo "Final state" . PHP_EOL;
-//echo "$bartos_account->name, $bartos_account->balance$" . PHP_EOL;
-//echo "$bartos_swiss_account->name, $bartos_account->balance$" . PHP_EOL;
-
+//echo "{$bartos_account->getName()}, {$bartos_account->balance()}$" . PHP_EOL;
+//echo "{$bartos_swiss_account->getName()}, {$bartos_account->balance()}$" . PHP_EOL;
+//
 
 
 //$account = new Account('Account', 100.0);
 //$account->deposit(20.0);
-//echo "{$account->name}: {$account->balance()}$" . PHP_EOL;
+//echo "{$account->getName()}: {$account->balance()}$" . PHP_EOL;
 
 
 //$Matt = new Account("Matt's account", 1000);
@@ -62,20 +66,20 @@ class Account{
 //$Matt->withdrawal(100.0);
 //$Mine->deposit(100.0);
 //
-//echo "{$Matt->name}: {$Matt->balance()}$" . PHP_EOL;
-//echo "{$Mine->name}: {$Mine->balance()}$" . PHP_EOL;
+//echo "{$Matt->getName()}: {$Matt->balance()}$" . PHP_EOL;
+//echo "{$Mine->getName()}: {$Mine->balance()}$" . PHP_EOL;
 
 
-$A =  new Account('A', 100.0);
-$B =  new Account('B', 0.0);
-$C =  new Account('C', 0.0);
-
-Account::transfer($A, $B, 50);
-Account::transfer($B, $C, 25);
-
-echo "{$A->name}: {$A->balance()}$" . PHP_EOL;
-echo "{$B->name}: {$B->balance()}$" . PHP_EOL;
-echo "{$C->name}: {$C->balance()}$" . PHP_EOL;
+//$A =  new Account('A', 100.0);
+//$B =  new Account('B', 0.0);
+//$C =  new Account('C', 0.0);
+//
+//Account::transfer($A, $B, 50);
+//Account::transfer($B, $C, 25);
+//
+//echo "{$A->getName()}: {$A->balance()}$" . PHP_EOL;
+//echo "{$B->getName()}: {$B->balance()}$" . PHP_EOL;
+//echo "{$C->getName()}: {$C->balance()}$" . PHP_EOL;
 
 
 

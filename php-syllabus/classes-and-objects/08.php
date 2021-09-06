@@ -3,9 +3,9 @@
 
 class SavingAccount{
 
-    public int $balance;
+    private int $balance;
 
-    public int $annualInterestRate;
+    private int $annualInterestRate;
 
     public function __construct(int $balance, int $annualInterestRate)
     {
@@ -24,7 +24,13 @@ class SavingAccount{
     public function addAmountOfMonthInterest(): void{
         $this->balance = $this->balance + ($this->balance * ($this->annualInterestRate / 12));
     }
+    public function balance(){
+        return $this->balance;
+    }
 
+    public function setBalance(int $newBalance){
+        $this->balance = $newBalance;
+    }
 }
 
 
@@ -50,9 +56,9 @@ for($i = 1; $i <= $months; $i++){
     $savingsAccount->subtractAmountOfWithdrawl($withdraws);
     $savingsAccount->addAmountOfDeposit($deposits);
 
-    $oldBalance =  $savingsAccount->balance;
+    $oldBalance =  $savingsAccount->balance();
     $savingsAccount->addAmountOfMonthInterest();
-    $interestEarned+=($savingsAccount->balance - $oldBalance);
+    $interestEarned+=($savingsAccount->balance() - $oldBalance);
 
 
 }
@@ -61,13 +67,14 @@ $totalDeposits = number_format($totalDeposits, 2, ".", ",") . "$";
 $totalWithdraws = number_format($totalWithdraws, 2, ".", ",") . "$";
 
 $interestEarned = number_format($interestEarned, 2 ,'.', ',') . "$";
-$savingsAccount->balance = number_format($savingsAccount->balance, 2 ,'.', ',') . "$";
+
+$savingsMoney =  number_format($savingsAccount->balance(), 2 ,'.', ',') . "$";
 
 echo "Total deposited: $totalDeposits" . PHP_EOL;
 echo "Total withdrawn: $totalWithdraws" . PHP_EOL;
 
 echo "Interest earned: " . $interestEarned . PHP_EOL;
-echo "Ending balance: " . $savingsAccount->balance . PHP_EOL;
+echo "Ending balance: " . $savingsMoney . PHP_EOL;
 
 
 

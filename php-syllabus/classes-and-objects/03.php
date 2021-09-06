@@ -112,7 +112,7 @@ function carDrive(int $km, FuelGauge $fuelGauge, Odometer $odometer, int $litres
         }
         echo PHP_EOL;
 
-        sleep(1);
+        usleep(50000);
         $km--;
 
     }
@@ -124,4 +124,6 @@ function carDrive(int $km, FuelGauge $fuelGauge, Odometer $odometer, int $litres
 
 }
 
-carDrive(20, $fuelGauge, $odometer, 5);
+carDrive(50, $fuelGauge, $odometer, 5);
+
+
