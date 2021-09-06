@@ -54,7 +54,9 @@ class Odometer {
         if($this->mileage <999999){
             $this->mileage+=1;
         }else{
+            $difference =  $this->mileage - $this->startMileage + 1;
             $this->mileage = 0;
+            $this->startMileage = $this->mileage - $difference;
         }
 
     }
@@ -69,9 +71,9 @@ class Odometer {
 }
 
 
-$fuelGauge = new FuelGauge(2);
+$fuelGauge = new FuelGauge(3);
 
-$odometer = new Odometer(999997);
+$odometer = new Odometer(0);
 
 function carDrive(int $km, FuelGauge $fuelGauge, Odometer $odometer, int $litresToPut){
 
