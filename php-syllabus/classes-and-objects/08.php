@@ -3,9 +3,9 @@
 
 class SavingAccount{
 
-    public $balance;
+    public int $balance;
 
-    public $annualInterestRate;
+    public int $annualInterestRate;
 
     public function __construct(int $balance, int $annualInterestRate)
     {

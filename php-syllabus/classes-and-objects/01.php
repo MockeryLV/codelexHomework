@@ -2,11 +2,11 @@
 
 class Product{
 
-    private $price;
+    private float $price;
 
-    private $amount;
+    private int $amount;
 
-    private $name;
+    private string $name;
 
     public function __construct(string $name, float $price, int $amount)
     {

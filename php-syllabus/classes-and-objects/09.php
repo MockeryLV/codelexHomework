@@ -3,11 +3,11 @@
 
 class BankAccount{
 
-    public $name;
+    public string $name;
 
-    public $balance;
+    public int $balance;
 
-    public function __construct($name, $balance)
+    public function __construct(string $name, int $balance)
     {
         $this->name = $name;
         $this->balance = $balance;

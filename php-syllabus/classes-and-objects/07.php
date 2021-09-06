@@ -3,13 +3,13 @@
 
 class Dog{
 
-    public $name;
+    public string $name;
 
-    public $sex;
+    public string $sex;
 
-    public $mother;
+    public string $mother;
 
-    public $father;
+    public string $father;
 
     public function __construct(string $name, string $sex, string $mother = 'Unknown', string $father = 'Unknown')
     {

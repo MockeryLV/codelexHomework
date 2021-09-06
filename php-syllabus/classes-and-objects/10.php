@@ -4,14 +4,14 @@
 class Application
 {
 
-    public $videoStore;
+    public VideoStore $videoStore;
 
     public function __construct()
     {
         $this->videoStore = new VideoStore();
     }
 
-    function run()
+    function run(): void
     {
         system('clear');
         while (true) {
@@ -49,14 +49,14 @@ class Application
 
     }
 
-    private function add_movies()
+    private function add_movies(): void
     {
         echo PHP_EOL;
         $title = (string) readline("Enter the movie's title: ");
         $this->videoStore->add_video($title);
     }
 
-    private function rent_video()
+    private function rent_video(): void
     {
         echo PHP_EOL;
         $title = (string) readline("Enter the movie's title: ");
@@ -65,7 +65,7 @@ class Application
 
     }
 
-    private function return_video()
+    private function return_video(): void
     {
         echo PHP_EOL;
         $title = (string) readline("Enter the movie's title: ");
@@ -73,7 +73,7 @@ class Application
 
     }
 
-    private function list_inventory()
+    private function list_inventory(): void
     {
         $this->videoStore->list_inventory();
     }
@@ -82,7 +82,7 @@ class Application
 class VideoStore
 {
 
-    public $inventory = [];
+    public array $inventory = [];
 
     public function add_video(string $title){
         foreach ($this->inventory as $item){
@@ -94,7 +94,7 @@ class VideoStore
         array_push($this->inventory, $newVideo);
     }
 
-     public function list_inventory(){
+     public function list_inventory(): void{
 
          system('clear');
          echo 'List of movies:' . PHP_EOL . PHP_EOL;
@@ -163,7 +163,7 @@ class VideoStore
 class Video
 {
 
-    public $title;
+    public string $title;
     public $isCheckedOut = false;
     public $averageUserRating = 0;
     public $countOfRates = 0;

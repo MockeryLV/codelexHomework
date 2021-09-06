@@ -3,11 +3,11 @@
 
 class Movie{
 
-    public $title;
+    public string $title;
 
-    public $studio;
+    public string $studio;
 
-    public $rating;
+    public string $rating;
 
 
     public function __construct(string $title, string $studio, string $rating)

@@ -3,11 +3,11 @@
 
 class Date{
 
-    private $month;
+    private int $month;
 
-    private $day;
+    private int $day;
 
-    private $year;
+    private int $year;
 
 
     public function __construct(int $day, int $month, int $year)
@@ -17,14 +17,14 @@ class Date{
         $this->year = $year;
     }
 
-    public function __get($name)
+    public function __get(int $name)
     {
         if(property_exists($this, $name)){
             return $this->$name;
         }
     }
 
-    public function __set($name, $value)
+    public function __set(int $name, int $value)
     {
         if(property_exists($this, $name)){
             $this->$name = $value;
