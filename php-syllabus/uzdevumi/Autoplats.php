@@ -57,7 +57,7 @@ class User{
 
     public function buyCar(Car $car): void{
         $this->balance-=$car->getInfo()['price'];
-        array_push($cars, $car);
+        array_push($this->cars, $car);
     }
 
 
@@ -126,12 +126,26 @@ class UserInterface{
 
     }
 
+    public function buyCar(int $car){
+        if($this->marketplace->getUser()->getBalance() >= $this->marketplace->getCars()[$car]->getInfo()['price']){
+            echo 'You have bougth the car!' . PHP_EOL;
+            $this->marketplace->getUser()->buyCar($this->marketplace->getCars()[$car]);
+            $this->marketplace->sellCar($car);
+            readline();
+        }else{
+            echo 'Insufficient balance!' . PHP_EOL;
+            readline();
+        }
+    }
 }
 
 $cars = [
     new Car('Audi', 'A4', 1400, 1900, 'diesel', 390000),
     new Car('Audi', 'A6', 1800, 2500, 'diesel', 250000),
     new Car('Audi', 'A8', 4000, 3000, 'diesel', 100000),
+    new Car('BMW', '530', 2500, 3000, 'diesel', 500000),
+    new Car('Ford', 'Fiesta', 275, 1300, 'gasoline', 170000),
+    new Car('Volkswagen', 'Passat', 700, 1600, 'gasoline/gas', 900000),
 ];
 
 $user = new User(10000);
@@ -176,11 +190,7 @@ while(true){
     if(getBuyOrNo() === 'n'){
         continue;
     }else{
-        if($marketplace->getUser()->getBalance() >= $marketplace->getCars()[$car]->getInfo()['price']){
-            echo 'You have bougth the car!' . PHP_EOL;
-            $marketplace->getUser()->buyCar($marketplace->getCars()[$car]);
-            $marketplace->sellCar($car);
-        }
+        $userinterface->buyCar($car);
     }
 
 }
