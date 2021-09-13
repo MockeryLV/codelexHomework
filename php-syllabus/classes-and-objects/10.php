@@ -177,7 +177,7 @@ class Video
         $this->isCheckedOut = true;
     }
 
-    public function getReturned(){
+    public function getReturned():void{
         $this->isCheckedOut = false;
     }
 
