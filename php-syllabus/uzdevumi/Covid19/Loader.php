@@ -25,6 +25,17 @@ class Loader{
         return $this->fields;
     }
 
+    public function searchByCountry(string $country): array{
+        foreach ($this->fields as $field){
+            /**
+             * @var Field $field
+             */
+            if(strtoupper($field->getInfo()['country']) === strtoupper($country)){
+                return [$field];
+            }
+        }
+        return [];
+    }
 //    public function save(array $data)
 //    {
 //        $file = fopen($this->filename, 'w');

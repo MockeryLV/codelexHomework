@@ -15,26 +15,24 @@ class TableSetter{
     public function setTable(){
 
 
-        $this->tbl
-            ->addHeader('Datums')
-            ->addHeader('Valsts')
-            ->addHeader('14Dienu')
-            ->addHeader('Izcelosana')
-            ->addHeader('Pasizolacija')
-            ->addHeader('PersVac')
-            ->addHeader('PersTestB')
-            ->addHeader('PersTestA')
-            ->addHeader('PersIsolLat')
-            ->addHeader('CitTestB')
-            ->addHeader('CitTestA');
-
         foreach ($this->fields as $key => $field){
 
             /**
              * @var Field $field
              */
             if($key === 0){
-                continue;
+                $this->tbl
+                    ->addHeader('Datums')
+                    ->addHeader('Valsts')
+                    ->addHeader('14Dienu')
+                    ->addHeader('Izcelosana')
+                    ->addHeader('Pasizolacija')
+                    ->addHeader('PersVac')
+                    ->addHeader('PersTestB')
+                    ->addHeader('PersTestA')
+                    ->addHeader('PersIsolLat')
+                    ->addHeader('CitTestB')
+                    ->addHeader('CitTestA');
             }
             $this->tbl
                 ->addRow()
@@ -53,6 +51,18 @@ class TableSetter{
 
 
         }
+    }
+
+    /**
+     * @param array $fields
+     */
+    public function setFields(array $fields): void
+    {
+        $this->fields = $fields;
+    }
+
+    public function setTbl(): void{
+        $this->tbl = new ConsoleTable();
     }
 
     public function getTbl(): ConsoleTable{
