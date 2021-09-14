@@ -36,16 +36,7 @@ class Loader{
         }
         return [];
     }
-//    public function save(array $data)
-//    {
-//        $file = fopen($this->filename, 'w');
-//
-//        foreach ($data as $item){
-//            fputcsv($file, $item->getProduct(), ';');
-//        }
-//        fclose($file);
-//
-//    }
+
 
 
 }
