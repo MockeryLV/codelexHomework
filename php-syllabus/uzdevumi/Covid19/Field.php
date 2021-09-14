@@ -20,11 +20,11 @@ class Field{
 
     public function getInfo(): array{
         return [
-          'date' => $this->date,
-          'country' => $this->country,
-          'twoWeek' => $this->twoWeek,
-          'travelStatus' => $this->travelStatus,
-          'selfIsolationPeriod' => $this->selfIsolationPeriod
+          'date' => strlen($this->date) > 30? substr($this->date, 0, 30) .  '...': $this->date,
+          'country' => strlen($this->country) > 30? substr($this->country, 0, 30) .  '...': $this->country,
+          'twoWeek' => strlen($this->twoWeek) > 30? substr($this->twoWeek, 0, 30) .  '...': $this->twoWeek,
+          'travelStatus' => strlen($this->travelStatus) > 30? substr($this->travelStatus, 0, 30) .  '...': $this->travelStatus,
+          'selfIsolationPeriod' => strlen($this->selfIsolationPeriod) > 30? substr($this->selfIsolationPeriod, 0, 30) .  '...': $this->selfIsolationPeriod
         ];
     }
 
