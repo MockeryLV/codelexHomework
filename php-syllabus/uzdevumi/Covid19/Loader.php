@@ -1,0 +1,40 @@
+<?php
+
+
+
+class Loader{
+
+    private array $fields;
+    private string $filename;
+
+    public function __construct(string $filename)
+    {
+        $this->filename = $filename;
+        if(($file = fopen($filename, 'r')) !== false){
+            while(($data = fgetcsv($file, 10000, ';')) !== false){
+                $this->fields[] = new Field($data[0], $data[1], $data[2], $data[3], $data[4]);
+            }
+        }
+
+        fclose($file);
+
+    }
+
+    public function getFields(): array
+    {
+        return $this->fields;
+    }
+
+//    public function save(array $data)
+//    {
+//        $file = fopen($this->filename, 'w');
+//
+//        foreach ($data as $item){
+//            fputcsv($file, $item->getProduct(), ';');
+//        }
+//        fclose($file);
+//
+//    }
+
+
+}
