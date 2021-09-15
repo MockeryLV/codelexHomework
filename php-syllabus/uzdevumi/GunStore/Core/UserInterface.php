@@ -41,7 +41,7 @@ class UserInterface{
             $this->user->getWallet()->getCash()->withdrowal($amount);
             readline('Thanks!');
         }else{
-            echo 'Not enough money!' . PHP_EOL;
+            readline('Not enough money!');
         }
 
     }
@@ -92,10 +92,15 @@ class UserInterface{
 
     }
 
-    public function selectPaymentMethod(Gun $gun): void{
+    public function printPaymentMethods(): void{
         echo '1: Pay in cash (' . "Balance: {$this->user->getWallet()->getCash()->getBalance()}$" .')' . PHP_EOL;
         echo '2: Pay in card (' . "Balance: {$this->user->getWallet()->getCard()->getBalance()}$" .')' . PHP_EOL;
         echo '3: Pay in paypal (' . "Balance: {$this->user->getWallet()->getPaypal()->getBalance()}$" .')' . PHP_EOL;
+    }
+
+    public function selectPaymentMethod(Gun $gun): void{
+
+        $this->printPaymentMethods();
 
         $choose = (int)  readline('Select Payment Method: ');
 
@@ -110,11 +115,11 @@ class UserInterface{
                 $this->payPaypal($gun->getPrice());
                 break;
             default:
-                echo 'Incorrect input!' . PHP_EOL;
+                readline('Incorrect input!' );
         }
     }
 
-    public function openGun(Gun $gun){
+    public function openGun(Gun $gun): void{
 
         system('clear');
         echo 'Buying menu: ' . PHP_EOL. PHP_EOL;

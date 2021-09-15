@@ -1,17 +1,7 @@
 <?php
+declare(strict_types = 1);
 
-require_once 'PaymentMethod.php';
-require_once 'Gun.php';
-require_once 'User.php';
-require_once 'Pistol.php';
-require_once 'Rifle.php';
-require_once 'Card.php';
-require_once 'Cash.php';
-require_once 'Wallet.php';
-require_once 'Paypal.php';
-require_once 'GunStore.php';
-require_once 'UserInterface.php';
-
+require_once 'Core/bootstrap.php';
 
 
 $cash = new Cash(200);
@@ -27,7 +17,6 @@ $guns = [
     new Pistol('Diegle', 200),
     new Rifle('Ak-47', 300)
 ];
-
 
 
 $gunStore = new GunStore($guns);
