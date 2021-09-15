@@ -1,26 +1,12 @@
 <?php
 
-class Cash{
+class Cash extends PaymentMethod {
 
-    private int $balance;
 
     public function __construct(int $balance)
     {
-        $this->balance = $balance;
+        parent::__construct($balance);
     }
 
-    public function withdrowal(int $amount): void{
-
-        $this->balance -= $amount;
-
-    }
-
-    /**
-     * @return int
-     */
-    public function getBalance(): int
-    {
-        return $this->balance;
-    }
 
 }

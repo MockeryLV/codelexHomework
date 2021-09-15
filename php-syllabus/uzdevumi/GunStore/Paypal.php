@@ -1,36 +1,18 @@
 <?php
 
-class Paypal{
+class Paypal extends  PaymentMethod {
 
-    private int $balance;
     private string $email;
     private string $pwd;
 
     public function __construct(int $balance, string $email, string $pwd)
     {
-        $this->balance = $balance;
+        parent::__construct($balance);
 
         $this->email = $email;
         $this->pwd = $pwd;
     }
 
-    public function withdrowal(int $amount): void{
-
-        $this->balance -= $amount;
-
-    }
-
-    /**
-     * @return int
-     */
-    public function getBalance(): int
-    {
-        return $this->balance;
-    }
-
-    /**
-     * @return int
-     */
     public function getEmail(): string
     {
         return $this->email;

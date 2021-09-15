@@ -1,6 +1,6 @@
 <?php
 
-class Gun{
+abstract class Gun{
 
     protected string $name;
     protected int $price;

@@ -1,5 +1,6 @@
 <?php
 
+require_once 'PaymentMethod.php';
 require_once 'Gun.php';
 require_once 'User.php';
 require_once 'Pistol.php';
@@ -10,6 +11,7 @@ require_once 'Wallet.php';
 require_once 'Paypal.php';
 require_once 'GunStore.php';
 require_once 'UserInterface.php';
+
 
 
 $cash = new Cash(200);
@@ -27,6 +29,7 @@ $guns = [
 ];
 
 
+
 $gunStore = new GunStore($guns);
 
 $ui = new UserInterface($gunStore, $user);
@@ -35,7 +38,4 @@ while(true){
     system('clear');
     $ui->mainMenu();
     $ui->openGun($ui->selectGun());
-
-
-    readline('Press ENTER to continue!');
 }
