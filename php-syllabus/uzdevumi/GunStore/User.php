@@ -3,15 +3,16 @@
 
 class User {
 
-    private int $cash;
+    private Wallet $wallet;
+
 
     private array $licenses = [];
 
 
-    public function __construct(int $cash, array $licenses)
+    public function __construct(Wallet $wallet, array $licenses)
     {
-        $this->cash = $cash;
         $this->licenses = $licenses;
+        $this->wallet = $wallet;
     }
 
     public function getLicenses(): array
@@ -22,16 +23,16 @@ class User {
     /**
      * @return int
      */
-    public function getCash(): int
+    /**
+     * @return Wallet
+     */
+    public function getWallet(): Wallet
     {
-        return $this->cash;
+        return $this->wallet;
     }
 
     /**
      * @param int $cash
      */
-    public function setCash(int $cash): void
-    {
-        $this->cash-= $cash;
-    }
+
 }
