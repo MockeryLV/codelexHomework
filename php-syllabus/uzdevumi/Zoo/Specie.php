@@ -13,6 +13,14 @@ class Specie implements Animal{
         $this->status = $status;
     }
 
+    public static function isCompatible(Animal $a, Animal $b): string
+    {
+        if ($a->getStatus() === $b->getStatus()){
+            return 'Compatible';
+        }
+        return 'Not compatible';
+    }
+
     public function getName(): string
     {
         return $this->name;
@@ -23,11 +31,5 @@ class Specie implements Animal{
         return $this->status;
     }
 
-    public static function isCompatible(Animal $a, Animal $b): string
-    {
-        if ($a->getStatus() === $b->getStatus()){
-            return 'Compatible';
-        }
-        return 'Not compatible';
-    }
+
 }
