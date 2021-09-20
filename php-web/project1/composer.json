@@ -1,0 +1,6 @@
+{
+    "name": "mockery/project1",
+    "require": {
+        "spatie/calendar-links": "^1.6"
+    }
+}

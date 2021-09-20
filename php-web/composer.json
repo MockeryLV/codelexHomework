@@ -1,0 +1,9 @@
+{
+
+  "name": "alexey/web",
+  "require":{
+    "nesbot/carbon" : "^2.53",
+    "league/csv": "^9.7",
+    "spatie/calendar-links": "^1.6"
+  }
+}
