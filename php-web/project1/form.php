@@ -22,4 +22,4 @@ $link = Link::create($title, $from, $to)
     ->address($address);
 
 // Generate a link to create an event on Google calendar
-echo "<a href='{$link->google()}'>Your link!</a>";
+echo "<a href='{$link->google()}' target='_blank'>Your link!</a>";
