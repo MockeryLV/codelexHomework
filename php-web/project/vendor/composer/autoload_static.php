@@ -16,7 +16,7 @@ class ComposerStaticInitd8efdabdb1c0c27d1a1b6e1c69eeb99f
     public static $prefixDirsPsr4 = array (
         'Spatie\\CalendarLinks\\' => 
         array (
-            0 => __DIR__ . '/..' . '/spatie/calendar-links/src',
+            0 => __DIR__ . '/..',
         ),
     );
 
