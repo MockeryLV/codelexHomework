@@ -1,0 +1,7 @@
+{
+    "name": "mockery/chat",
+    "require": {
+        "league/csv": "^9.7",
+        "keboola/csv": "^2.3"
+    }
+}
